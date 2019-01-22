@@ -1,0 +1,21 @@
+---
+- name: copy wsgi file
+  template:
+    src: privacyidea_wsgi.py.j2
+    dest: /etc/privacyidea/privacyideaapp.wsgi
+    owner: wwwrun
+    group: www
+    mode: u=rxw,g=rxw,o-rwx
+  tags:
+    - install
+
+- name: copy apache_conf file
+  copy:
+    src: files/privacyidea.conf
+    dest: /etc/apache2/conf.d/privacyidea.conf
+    owner: root
+    group: root
+    mode: u=rw,g=rw,o=rw
+  notify: restart_apache2
+  tags:
+    - install

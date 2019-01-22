@@ -1,0 +1,62 @@
+---
+- name: create privacyidea log folder
+  file:
+    path: /var/log/privacyidea
+    owner: wwwrun
+    group: www
+    mode: 1750
+    state: directory
+  tags:
+    - install
+
+- name: create privacyidea config file
+  template:
+    src: pi.cfg.j2
+    dest: /etc/privacyidea/pi.cfg
+    owner: wwwrun
+    group: www
+    mode: u=rw,g=rw,o-rwx
+  tags:
+    - install
+
+- name: create temporary ldapresolver_file
+  template:
+    src: ldapresolver.tmp.j2
+    dest: /tmp/ldapresolver.cfg
+  tags:
+    - install
+
+- name: initialize privacyidea
+  shell:
+    cmd: |
+      source {{ pivenv_path }}/bin/activate
+      pi-manage create_enckey && pi-manage create_audit_keys
+      pi-manage createdb
+      pi-manage admin add -p {{ PI_ADMIN_PASSWORD }} admin
+      chown wwwrun:www /etc/privacyidea/private.pem
+      chown wwwrun:www /etc/privacyidea/enckey
+
+      if [ -e {{ PI_CFG_SQLITE_FILE }} ]
+      then
+          chown wwwrun:www {{ PI_CFG_SQLITE_FILE }}
+      fi
+
+      pi-manage resolver create {{ LDAP_RESOLVER_NAME }} ldapresolver /tmp/ldapresolver.cfg
+      pi-manage realm create {{ PI_REALM }} {{ LDAP_RESOLVER_NAME }}
+      chown wwwrun:www /var/log/privacyidea/*
+      pi-manage admin add -p {{ PI_ADMIN_PASSWORD }} admin
+  tags:
+    - install
+  #notify: restart_apache2
+
+- name: update privacyidea
+  shell:
+    cmd: |
+      source {{ pivenv_path }}/bin/activate
+      pi-manage db stamp 4f32a4e1bf33 -d {{ pivenv_path }}/lib/privacyidea/migrations
+      pi-manage db upgrade -d {{ pivenv_path }}/lib/privacyidea/migrations
+  notify: restart_apache2
+  tags:
+    - upgrade
+
+

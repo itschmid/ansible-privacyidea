@@ -1,0 +1,20 @@
+---
+- name: create privacyidea config folder
+  file:
+    path: /etc/privacyidea
+    owner: wwwrun
+    group: www
+    mode: 1750
+    state: directory
+  tags:
+    - install
+
+- import_tasks: install.yml
+- import_tasks: init.yml
+- import_tasks: apache.yml
+
+
+
+
+
+

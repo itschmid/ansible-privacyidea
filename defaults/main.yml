@@ -1,0 +1,34 @@
+---
+pivenv_path: /srv/www/pivenv
+
+PI_PACKAGE_VERSION: "v2.23.3"
+PI_ADMIN_PASSWORD: "admin"
+PI_REALM: 'pitest'
+
+PI_CFG_SQLITE_FILE: '/etc/privacyidea/data.sqlite'
+PI_CFG_SQLALCHEMY_DATABASE_URI: 'sqlite:////etc/privacyidea/data.sqlite'
+#PI_CFG_SQLALCHEMY_DATABASE_URI = 'pymysql://root@localhost/privacyidea'
+PI_CFG_SECRET_KEY: 'ldasfkokkd3c3ßc3rar'
+PI_CFG_PEPPER: "afsd4325342f24v22vv42"
+PI_CFG_LOGFILE: '/var/log/privacyidea/pi.log'
+PI_CFG_LOGLEVEL: 20
+
+LDAP_RESOLVER_NAME: "pildap"
+LDAP_AUTHTYPE: 'Simple'
+LDAP_BASE: 'dc=test,dc=env'
+LDAP_URI: 'ldap://192.168.1.45'
+LDAP_START_TLS: 0
+LDAP_EDITABLE: 0
+LDAP_SEARCHFILTER: '(uid=*)(objectClass=inetOrgPerson)'
+LDAP_SERVERPOOL_ROUNDS: 2
+LDAP_UIDTYPE: 'entryUUID'
+LDAP_TLS_VERIFY: 1
+LDAP_SERVERPOOL_SKIP: 30
+LDAP_TIMEOUT: 5
+LDAP_SIZELIMIT: 500
+LDAP_SCOPE: 'SUBTREE'
+LDAP_NOREFERRALS: 1
+LDAP_CACHE_TIMEOUT: 120
+LDAP_LOGINNAMEATTRIBUTE: 'uid'
+LDAP_NOSCHEMAS: 0
+LDAP_USERINFO: '{ "phone" : "telephoneNumber", "mobile" : "mobile", "email" : "mail", "surname" : "sn", "givenname" : "givenName" }'

@@ -1,0 +1,30 @@
+---
+- name: install required rpm
+  package: name={{ item }} state=installed
+  with_items:
+    - python-virtualenv
+    - python-devel
+    - libffi48-devel
+    - libopenssl-devel
+    - libxslt-devel
+    - libjpeg62-devel
+    - gcc
+    - python-setuptools
+  tags:
+    - install
+
+- name: create virtualenv and install privacyidea
+  pip: virtualenv="{{ pivenv_path }}"
+       virtualenv_python=python
+       name=privacyidea
+       version={{ PI_PACKAGE_VERSION }}
+  tags:
+    - install
+    - upgrade
+
+- name: install pymysql-sa
+  pip: virtualenv="{{ pivenv_path }}"
+       virtualenv_python=python
+       name=pymysql-sa
+  tags:
+    - install

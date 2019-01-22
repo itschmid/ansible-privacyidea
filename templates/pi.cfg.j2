@@ -1,0 +1,17 @@
+# The realm, where users are allowed to login as administrators
+SUPERUSER_REALM = ['super', 'administrators']
+# Your database
+SQLALCHEMY_DATABASE_URI = '{{ PI_CFG_SQLALCHEMY_DATABASE_URI }}'
+# This is used to encrypt the auth_token
+SECRET_KEY = '{{ PI_CFG_SECRET_KEY }}'
+# This is used to encrypt the admin passwords
+PI_PEPPER = "{{ PI_CFG_PEPPER }}"
+# This is used to encrypt the token data and token passwords
+PI_ENCFILE = '/etc/privacyidea/enckey'
+# This is used to sign the audit log
+PI_AUDIT_KEY_PRIVATE = '/etc/privacyidea/private.pem'
+PI_AUDIT_KEY_PUBLIC = '/etc/privacyidea/public.pem'
+PI_LOGFILE = '{{ PI_CFG_LOGFILE }}'
+PI_LOGLEVEL = {{ PI_CFG_LOGLEVEL }}
+# PI_INIT_CHECK_HOOK = 'your.module.function'
+# PI_CSS = '/location/of/theme.css'

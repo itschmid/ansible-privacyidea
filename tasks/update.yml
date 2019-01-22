@@ -1,0 +1,14 @@
+---
+
+- name: update privacyidea
+  shell:
+    cmd: |
+      source {{ PI_VENV }}/bin/activate
+      pip install --no-index --find-links /vagrant/offline_2.22/ --upgrade privacyidea
+      pi-manage db stamp 4f32a4e1bf33 -d {{ PI_VENV }}/lib/privacyidea/migrations
+      pi-manage db upgrade -d {{ PI_VENV }}/lib/privacyidea/migrations
+
+      #pip install --no-index --find-links /vagrant/offline_2.22/ --upgrade ldap3==2.3
+       #      pip install --no-index --find-links /vagrant/offline_2.22/ --upgrade pyasn1==0.4.2
+
+  notify: restart_apache2
