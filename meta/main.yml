@@ -2,7 +2,7 @@
 galaxy_info:
   author: Manfred Schmid
   role_name: privacyidea
-  description: Install and configure privacyidea on your system
+  description: Installing and configure privacyidea on your system
   company: IT-Schmid
   license: Apache-2.0
   min_anisble_version: 2.4
