@@ -1,6 +1,6 @@
-apache_wsgi
-=========
+privacyidea
+===========
 
-Install and configure Apache2.4 with mod_wsgi
+Installing and configuring privacyIDEA in a python virtualenv
 
 
