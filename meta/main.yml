@@ -11,6 +11,9 @@ galaxy_info:
     - name: SLES
       version:
         - 12.2
+  galaxy_tags:
+    - web
+    - python      
 
 dependencies:
   - itschmid.mariadb
