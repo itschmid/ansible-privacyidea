@@ -1,0 +1,15 @@
+---
+- name: install required rpm
+  package: name={{ item }} state=installed
+  with_items:
+    - python2-virtualenv
+    - python2-pip
+    - python-devel
+    - libffi-devel
+    - libopenssl-devel
+    - libxslt-devel
+    - libjpeg62-devel
+    - gcc
+    - python-setuptools
+  tags:
+    - install

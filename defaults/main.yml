@@ -13,6 +13,7 @@ PI_CFG_PEPPER: "afsd4325342f24v22vv42"
 PI_CFG_LOGFILE: '/var/log/privacyidea/pi.log'
 PI_CFG_LOGLEVEL: 20
 
+LDAP_CREATE_RESOLVER: True
 LDAP_RESOLVER_NAME: "pildap"
 LDAP_AUTHTYPE: 'Simple'
 LDAP_BASE: 'dc=test,dc=env'
