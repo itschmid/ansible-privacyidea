@@ -2,12 +2,12 @@
 - include_tasks: sles12_rpms.yml
   tags:
     - install
-  when: ansible_distribution_version == '12'
+  when: ansible_distribution_major_version == '12'
 
 - include_tasks: sles15_rpms.yml
   tags:
     - install
-  when: ansible_distribution_version == '15'
+  when: ansible_distribution_major_version == '15'
 
 - name: create virtualenv and install pip
   pip: virtualenv="{{ pivenv_path }}"
