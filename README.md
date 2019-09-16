@@ -14,8 +14,6 @@ Simple default install
       gather_facts: yes
 
       roles:
-        - role: gsocrepos
-          tags: install
         - role: itschmid.apache_wsgi
           tags: install
         - role: itschmid.mariadb
